@@ -1,0 +1,11 @@
+html {
+    min-height: 280px;
+    min-width: 500px;
+}
+
+.title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 500px;
+}

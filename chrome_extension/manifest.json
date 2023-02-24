@@ -1,0 +1,16 @@
+{
+  "name": "UdemyScrap",
+  "description": "Scraping Udemy course info",
+  "version": "0.1",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.udemy.com/course/*"],
+      "js": ["js/content-script.js"]
+    }
+  ],
+  "permissions": ["tabs"]
+}
