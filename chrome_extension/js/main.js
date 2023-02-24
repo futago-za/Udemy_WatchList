@@ -3,6 +3,29 @@
     chrome.tabs.query({ active: true, currentWindow: true}, tabs => {
         chrome.tabs.sendMessage(tabs[0].id, {}, (responseData) => {
             if (responseData) {
+                const registerCourse = () => {
+                    $('#btn').attr("disabled", true);
+                    $('#right-col').append('<div id="loading" class="spinner-border text-primary float-end" role="status"><span class="visually-hidden>Loading...</span></div>');
+
+                    const payload = {
+                        "title": responseData.title,
+                        "url": responseData.url,
+                        "image_path": responseData.imagePath,
+                        "total_time": responseData.fulltimeText,
+                        "sections": responseData.sections
+                    }
+
+                    chrome.runtime.sendMessage({payload}, {}, (response) => {
+                        $('#loading').remove();
+                        $('#btn').remove();
+                        if (response) {
+                            $('#right-col').append('<p class="lead text-primary fw-bold">registered!</p>');
+                        } else {
+                            $('#right-col').append('<p class="lead text-danger fw-bold">Failed!</p>');
+                        }
+                    });
+                }
+
                 $('#result').append(`<h1 class="title">${responseData.title}</h1>`)
                 $('#result').append('<div id="container" class="container"></div>');
                 $('#container').append('<div id="row" class="row">');

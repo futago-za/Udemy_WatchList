@@ -1,27 +1,29 @@
 console.log("content script");
 
 chrome.runtime.onMessage.addListener((request, sender, callback) => {
-    let showMoreButton = document.querySelector(".curriculum--curriculum-show-more--1UKkv");
+    const showMoreButton = document.querySelector(".curriculum--curriculum-show-more--1UKkv");
     if (showMoreButton) {
         showMoreButton.click();
     }
 
-    let imagePath = document.querySelector("[class^='intro-asset--img-aspect--']").childNodes[0].src;
+    const imagePath = document.querySelector("[class^='intro-asset--img-aspect--']").childNodes[0].src;
 
-    let title = document.querySelector(".clp-lead__title").innerText;
-    let url = location.href;
-    let courseInfo = document.querySelector("[class^='curriculum--content-length--']").innerHTML;
-    let sessionNum = courseInfo.match(/セクションの数: ([0-9]+)/)[1];
-    let lectureNum = courseInfo.match(/レクチャーの数: ([0-9]+)/)[1];
-    let fulltimeText = courseInfo.match(/総時間: <span>(.+)<\/span><\/span>/)[1];
+    const title = document.querySelector(".clp-lead__title").innerText;
+    const url = location.href;
+    const courseInfo = document.querySelector("[class^='curriculum--content-length--']").innerHTML;
+    const sessionNum = courseInfo.match(/セクションの数: ([0-9]+)/)[1];
+    const lectureNum = courseInfo.match(/レクチャーの数: ([0-9]+)/)[1];
+    const fulltimeText = courseInfo.match(/総時間: <span>(.+)<\/span><\/span>/)[1];
 
-    let sections = [];
-    let sectionsSpans = document.querySelectorAll(".ud-accordion-panel-title");
+    const sections = [];
+    const sectionsSpans = document.querySelectorAll(".ud-accordion-panel-title");
     for(let item of sectionsSpans) {
         if (item.childNodes.length !== 2) continue;
-        let sectionTitle = item.childNodes[0].innerText;
-        let timeText = item.childNodes[1].innerHTML.match(/<span>(.+)<\/span>/)[1];
-        sections.push({ title: sectionTitle, time: timeText})
+        const sectionTitle = item.childNodes[0].innerText;
+        const content = item.childNodes[1].innerHTML;
+        const lectureNumInSection = content.match(/(.+)個のレクチャー/)[1];
+        const timeText = content.match(/<span>(.+)<\/span>/)[1];
+        sections.push({ title: sectionTitle, total_lecture: lectureNumInSection, total_time: timeText})
     }
 
     callback({
