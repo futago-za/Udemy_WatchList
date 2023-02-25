@@ -5,7 +5,6 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import TextBoxWidhCopyButton from './TextBoxWithCopyButton';
 import Button from '@mui/material/Button';
-import { deleteCourse } from '../utils/connection';
 
 const CourseCard = (props) => {
 

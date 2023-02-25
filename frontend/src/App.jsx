@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import CourseCard from "./Components/CourseCard";
+import CourseCard from "./components/CourseCard";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { fetchCourses, updateCourse, deleteCourse } from "./utils/connection";
 

@@ -1,5 +1,8 @@
+const BACKEND_HOST = process.env.REACT_APP_BACKEND_HOST;
+const BACKEND_PORT = process.env.REACT_APP_BACKEND_PORT;
+
 const fetchCourses = () => {
-  return fetch('http://localhost:8000/api/course/', {
+  return fetch(`http://${BACKEND_HOST}:${BACKEND_PORT}/api/course/`, {
     method: 'GET',
     mode: 'cors',
     headers: {
@@ -14,7 +17,7 @@ const fetchCourses = () => {
 }
 
 const updateCourse = (item) => {
-  return fetch(`http://localhost:8000/api/course/${item.id}/`, {
+  return fetch(`http://${BACKEND_HOST}:${BACKEND_PORT}/api/course/${item.id}/`, {
     method: 'PUT',
     mode: 'cors',
     headers: {
@@ -29,7 +32,7 @@ const updateCourse = (item) => {
 }
 
 const deleteCourse = (id) => {
-  return fetch(`http://localhost:8000/api/course/${id}/`, {
+  return fetch(`http://${BACKEND_HOST}:${BACKEND_PORT}/api/course/${id}/`, {
     method: 'DELETE',
     mode: 'cors',
     headers: {  
