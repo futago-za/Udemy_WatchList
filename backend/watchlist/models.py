@@ -6,6 +6,7 @@ class Course(models.Model):
   url = models.CharField(max_length=256, unique=True)
   image_path = models.CharField(max_length=256)
   total_time = models.CharField(max_length=32)
+  sort_order = models.IntegerField()
   created_at = models.DateTimeField(auto_now_add=True)
 
   def __str__(self):

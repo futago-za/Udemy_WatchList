@@ -12,6 +12,7 @@
                         "url": responseData.url,
                         "image_path": responseData.imagePath,
                         "total_time": responseData.fulltimeText,
+                        "sort_order": 0,
                         "sections": responseData.sections
                     }
 

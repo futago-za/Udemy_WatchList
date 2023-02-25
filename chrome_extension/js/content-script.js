@@ -1,5 +1,3 @@
-console.log("content script");
-
 chrome.runtime.onMessage.addListener((request, sender, callback) => {
     const showMoreButton = document.querySelector(".curriculum--curriculum-show-more--1UKkv");
     if (showMoreButton) {
