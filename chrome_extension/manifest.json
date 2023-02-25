@@ -3,7 +3,7 @@
   "description": "Scraping Udemy course info",
   "version": "0.1",
   "manifest_version": 3,
-  "host_permissions": ["http://localhost/*"],
+  "host_permissions": ["<all_urls>"],
   "action": {
     "default_popup": "popup.html"
   },
@@ -16,5 +16,8 @@
   "background": {
     "service_worker": "js/background.js"
   },
-  "permissions": ["tabs"]
+  "permissions": ["tabs", "storage"],
+  "storage": {
+    "managed_schema": "schema.json"
+  }
 }

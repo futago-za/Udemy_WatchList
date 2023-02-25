@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "hostname": {
+      "type": "string"
+    },
+    "port": {
+      "type": "string"
+    }
+  }
+}

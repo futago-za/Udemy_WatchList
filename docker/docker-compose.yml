@@ -25,6 +25,7 @@ services:
       - ../backend:/code
     depends_on:
       - db
+    restart: always
 
   db:
     image: mysql:8.0
@@ -33,3 +34,4 @@ services:
       - ./mysql/:/var/lib/mysql
     ports:
       - ${MYSQL_PORT}:3306
+    restart: always

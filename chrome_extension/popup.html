@@ -10,10 +10,23 @@
     <script src="jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div id="result"></div>
-        <script src="js/main.js"></script>
-        <button type="button" class="btn btn-secondary"><i class="fas fa-wrench pe-2"></i>設定</button>
+    <div id="result">
+        <div id="container" class="container py-2">
+            <form>
+                <div class="input-group mb-2">
+                    <span class="input-group-text" id="basic-addon1" style="width:95px;">ホスト名</span>
+                    <input type="text" class="form-control" placeholder="Hostname" aria-label="Hostname" id="hostname" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-2">
+                    <span class="input-group-text" id="basic-addon1" style="width:95px;">ポート番号</span>
+                    <input type="text" class="form-control" placeholder="Port" aria-label="Port" id="port" aria-describedby="basic-addon2">
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button id="btn" type="button" class="btn btn-primary ">ウォッチリストに登録する</button>
+                </div>
+            </div>
+        </form>
     </div>
+    <script src="js/main.js"></script>
 </body>
 </html>

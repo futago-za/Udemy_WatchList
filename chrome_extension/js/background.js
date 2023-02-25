@@ -2,7 +2,9 @@ chrome.runtime.onMessage.addListener((message, sender, callback) => {
   if (!message) {
     callback(false);
   } else {
-    fetch('http://localhost:8000/csrfprotect/', {'method': 'GET'})
+    const hostname = message.hostname;
+    const port = message.port;
+    fetch(`http://${hostname}:${port}/csrfprotect/`, {'method': 'GET'})
       .then((response) => {
         if (!response.ok) {
           throw Error('failed fetch csrf token');
@@ -10,7 +12,7 @@ chrome.runtime.onMessage.addListener((message, sender, callback) => {
         return response.json();
       }).then((data) => {
         csrf_token = data['token'];
-        fetch('http://localhost:8000/api/course/', {
+        fetch(`http://${hostname}:${port}/api/course/`, {
           'method': 'POST',
           headers: {
               'Content-Type': 'application/json',
