@@ -9,6 +9,10 @@ chrome.tabs.query({ active: true, currentWindow: true}, tabs => {
     chrome.tabs.sendMessage(tabs[0].id, {}, (responseData) => {
         if (responseData) {
             const registerCourse = () => {
+                if ($("#error_text").length) {
+                    $("#error_text").remove();
+                }
+
                 $('#btn').attr("disabled", true);
                 $('#container').append('<div id="loading" class="spinner-border text-primary float-end" role="status"><span class="visually-hidden>Loading...</span></div>');
 
@@ -26,11 +30,12 @@ chrome.tabs.query({ active: true, currentWindow: true}, tabs => {
 
                 chrome.runtime.sendMessage({hostname, port, payload}, {}, (response) => {
                     $('#loading').remove();
-                    $('#btn').remove();
                     if (response) {
-                        $('#container').append('<p class="lead text-primary fw-bold">registered!</p>');
+                        $('#btn').remove();
+                        $('#container').append('<p class="lead text-primary fw-bold">登録しました</p>');
                     } else {
-                        $('#container').append('<p class="lead text-danger fw-bold">Failed!</p>');
+                        $('#btn').attr("disabled", false);
+                        $('#container').append('<p class="lead text-danger fw-bold" id="error_text">登録に失敗しました</p>');
                     }
                 });
                 chrome.storage.sync.set({ hostname, port })
@@ -39,7 +44,8 @@ chrome.tabs.query({ active: true, currentWindow: true}, tabs => {
             let button = document.getElementById('btn');
             button.addEventListener('click', registerCourse);
         } else {
-            $('#result').append('<h1 class="text-danger">Error</h1>');
+            $('#container').hide();
+            $('#result').append('<h1 class="text-secondary fs-6">読み込み中です。。。</h1>');
         }
     });
 });
